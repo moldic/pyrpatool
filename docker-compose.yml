@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  app:
+    container_name: app
+    build:
+      ./build/app
+    tty: true
+    ports:
+      - 8000:8000
+    working_dir: /pyrpa
+    volumes:
+      - type: bind
+        source: ./src
+        target: /pyrpa/src
