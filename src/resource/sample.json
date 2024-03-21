@@ -1,0 +1,65 @@
+{
+    "scenario_name": "sample",
+    "resource": {
+        "input": {
+            "input1": "sample.xlsx"
+        },
+        "template": "template.xlsx",
+        "output": "1.xlsx"
+    },
+    "function": [
+        {
+            "name":"function1",
+            "input":"input1",
+            "actions":[
+                {
+                    "command":"query",
+                    "arg":"c<5"
+                },
+                {
+                    "command":"groupby",
+                    "arg":"b"
+                },
+                {
+                    "command":"size"
+                }
+            ]
+        },
+        {
+            "name":"function2",
+            "input":"input1",
+            "actions":[
+                {
+                    "command":"raw",
+                    "arg":"query('c>5').groupby('b').size()"
+                }
+            ]
+        }
+
+    ]
+    ,
+    "output": [
+        {
+            "type":"set",
+            "cells": ["A1"],
+            "val": "aaaa"
+        },
+        {
+            "type":"replace",
+            "cells": ["B:B"],
+            "val": "bbbb",
+            "search":"aaa"
+        },
+        {
+            "type":"set",
+            "cells": ["A2"],
+            "function": "date",
+            "format": "yyyy-mm-dd"
+        },
+        {
+            "type":"set",
+            "origin": "C2",
+            "function": "function1"
+        }
+    ]
+}
